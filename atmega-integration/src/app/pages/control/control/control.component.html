@@ -1,0 +1,32 @@
+<form #f="ngForm">
+  <div class="container">
+
+    <div class="card-header">
+      <h1>Панель управления</h1>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <mat-slide-toggle name="heater"
+                            [(ngModel)]="heater"
+                            (change)="onHeaterChange()">Нагреватель
+          </mat-slide-toggle>
+        </div>
+        <div class="col-12 col-sm-6">
+          <mat-slide-toggle name="fan"
+                            [(ngModel)]="fan"
+                            (change)="onFanChange()">Вентилятор
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="row">
+        <app-chart></app-chart>
+      </div>
+
+    </div>
+
+  </div>
+</form>
