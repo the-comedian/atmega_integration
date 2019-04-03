@@ -22,8 +22,9 @@
         </div>
       </div>
 
-      <div class="row">
-        <app-chart></app-chart>
+      <div *ngIf="chartData" class="row">
+        <app-chart [lineChartData]="chartData"
+                   [lineChartLabels]="labels"></app-chart>
       </div>
 
     </div>

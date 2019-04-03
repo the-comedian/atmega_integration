@@ -6,6 +6,8 @@ import { ControlComponent } from './control/control.component';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material';
 import { AppChartModule } from '../../components/app-chart/app-chart.module';
+import { RestService } from '../../services/rest.service';
+import { IntegrationService } from '../../services/integration.service';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { AppChartModule } from '../../components/app-chart/app-chart.module';
     MatSlideToggleModule,
     AppChartModule
   ],
-  declarations: [ControlComponent]
+  declarations: [ControlComponent],
+  providers: [RestService, IntegrationService]
 })
 export class ControlModule { }

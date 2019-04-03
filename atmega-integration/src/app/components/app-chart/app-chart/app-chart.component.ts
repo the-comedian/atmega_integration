@@ -12,7 +12,7 @@ export class AppChartComponent implements OnInit {
   @Input() lineChartData: ChartDataSets[] = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
   ];
-  @Input() lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  @Input() lineChartLabels: Label[] = [];
   protected lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
