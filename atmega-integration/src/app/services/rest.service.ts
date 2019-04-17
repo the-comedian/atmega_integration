@@ -1,34 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class RestService {
   constructor(private httpClient: HttpClient) {
   }
 
-  REST_PATH = 'http://192.168.3.125:10001/';
+  headers = new HttpHeaders({'Content-Type': 'application/json; charset=UTF-8'});
+
+  REST_PATH = '/rest/';
 
   public doGet(methodName: string) {
     const url = this.REST_PATH + methodName;
     return this.httpClient.get(url);
-    // .map((res: any) => {
-    //   this.mapMethod(url, res);
-    //   return res;
-    // });
   }
 
   public doPost(methodName: string, params: any) {
     const url = this.REST_PATH + methodName;
-    return this.httpClient.post(url, params);
-    // .map((res: any) => {
-    //   this.mapMethod(url, res);
-    //   return res;
-    // });
+    const options = {
+      headers: this.headers,
+      body: params,
+      withCredentials: true
+    };
+
+    return this.httpClient.request('POST', url, options);
   }
 
   private mapMethod(url: string, data: any) {

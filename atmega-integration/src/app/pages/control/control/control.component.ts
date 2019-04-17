@@ -11,14 +11,6 @@ import { IntegrationService } from '../../../services/integration.service';
 export class ControlComponent implements OnInit {
 
   /**
-   * Нагреватель
-   */
-  protected heater: boolean = false;
-  /**
-   * Вентилятор
-   */
-  protected fan: boolean = false;
-  /**
    * Текущая температура
    */
   protected currentTemperature: number;
@@ -27,12 +19,34 @@ export class ControlComponent implements OnInit {
    */
   protected targetTemperature: number;
   /**
+   * пид ПК
+   */
+  protected pidPk;
+  /**
+   * пид ИК
+   */
+  protected pidIk;
+  /**
+   * пид ДК
+   */
+  protected pidDk;
+  /**
    * Данные для графика
    */
   protected chartData: ChartDataSets[];
   protected labels: any[];
 
   constructor(private integrationService: IntegrationService) {
+  }
+
+  ngOnInit() {
+
+  }
+
+  /**
+   * Получить данные графика
+   */
+  protected getGraphicData() {
     this.integrationService.getGraphicData()
       .subscribe((res: any) => {
         if (res) {
@@ -55,24 +69,67 @@ export class ControlComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  /**
+   * Задать целевую температуру
+   */
+  protected applyTemperature() {
+    this.integrationService.setTemp(this.targetTemperature)
+      .subscribe((res: any) => {
+        if (res) {
+          if (res.status == 'ok') {
+            console.log('success');
+          } else {
+            alert('Ошибка при задании температуры');
+          }
+        }
+      });
   }
 
-  protected onHeaterChange() {
-    if (this.heater) {
-      // включить нагреватель
-    } else {
-      // выключить нагреватель
-    }
+  /**
+   * Задать пид пк
+   */
+  protected setPidPk() {
+    this.integrationService.setPidPk(this.pidPk)
+      .subscribe((res: any) => {
+        if (res) {
+          if (res.status == 'ok') {
+            console.log('success');
+          } else {
+            alert('Ошибка при задании pidPk');
+          }
+        }
+      });
   }
 
-  protected onFanChange() {
-    if (this.heater) {
-      // включить вентилятор
-    } else {
-      // выключить вентилятор
-    }
+  /**
+   * Задать пид дк
+   */
+  protected setPidDk() {
+    this.integrationService.setPidDk(this.pidDk)
+      .subscribe((res: any) => {
+        if (res) {
+          if (res.status == 'ok') {
+            console.log('success');
+          } else {
+            alert('Ошибка при задании pidDk');
+          }
+        }
+      });
   }
 
-
+  /**
+   * Задать пид ик
+   */
+  protected setPidIk() {
+    this.integrationService.setPidIk(this.pidIk)
+      .subscribe((res: any) => {
+        if (res) {
+          if (res.status == 'ok') {
+            console.log('success');
+          } else {
+            alert('Ошибка при задании pidIk');
+          }
+        }
+      });
+  }
 }

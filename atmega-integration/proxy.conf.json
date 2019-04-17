@@ -1,0 +1,10 @@
+{
+  "/rest": {
+    "target": "https://reqres.in/",
+    "secure": false,
+    "pathRewrite": {
+      "^/rest": ""
+    },
+    "changeOrigin": true
+  }
+}

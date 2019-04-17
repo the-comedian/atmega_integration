@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from '@angular/material';
 import { AppChartModule } from '../../components/app-chart/app-chart.module';
 import { RestService } from '../../services/rest.service';
 import { IntegrationService } from '../../services/integration.service';
+import { InputFieldModule } from '../../components/input-field/input-field/input-field.module';
 
 @NgModule({
   imports: [
@@ -15,9 +16,11 @@ import { IntegrationService } from '../../services/integration.service';
     ControlRoutingModule,
     FormsModule,
     MatSlideToggleModule,
-    AppChartModule
+    AppChartModule,
+    InputFieldModule
   ],
   declarations: [ControlComponent],
   providers: [RestService, IntegrationService]
 })
-export class ControlModule { }
+export class ControlModule {
+}
