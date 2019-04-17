@@ -13,24 +13,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }]
 })
 export class InputFieldComponent implements ControlValueAccessor, OnInit {
-  registerOnChange(fn: any): void {
-  }
 
-  registerOnTouched(fn: any): void {
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-  }
-
-  writeValue(obj: any): void {
-    if (obj) {
-      if (obj != this.value) {
-        this.value = obj;
-      }
-    }
-  }
-
-  protected value: any;
+  private _value: any;
 
   @Input() name: string;
   @Input() type: string;
@@ -41,7 +25,39 @@ export class InputFieldComponent implements ControlValueAccessor, OnInit {
   constructor() {
   }
 
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
+
+  get value() {
+    return this._value;
+  }
+
+  set value(val) {
+    this._value = val;
+    this.onChange(val);
+    this.onTouched();
+  }
+
   ngOnInit() {
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+  }
+
+  writeValue(obj: any): void {
+    if (obj) {
+      this.value = obj;
+    }
   }
 
 }

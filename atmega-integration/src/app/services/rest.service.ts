@@ -25,7 +25,6 @@ export class RestService {
       body: params,
       withCredentials: true
     };
-
     return this.httpClient.request('POST', url, options);
   }
 
